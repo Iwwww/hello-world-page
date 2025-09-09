@@ -1,6 +1,14 @@
 import { defineConfig } from "vite";
-import viteCompression from "vite-plugin-compression";
+import viteCompressionPlugin from "vite-plugin-compression";
+import sitemapPlugin from "vite-plugin-sitemap";
 
 export default defineConfig({
-  plugins: [viteCompression({ algorithm: "brotliCompress", threshold: 1024 })],
+  plugins: [
+    viteCompressionPlugin({ algorithm: "brotliCompress", threshold: 1024 }),
+    sitemapPlugin({
+      hostname: "https://hello-world-page-test.vercel.app",
+      generateRobotsTxt: true,
+      robots: [{ userAgent: "*", allow: "/" }],
+    }),
+  ],
 });
